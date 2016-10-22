@@ -31,6 +31,6 @@ Using  Maven
 	mvn spring-boot:run
 
 Using Java and built jar,
-	mvn java -jar cachedemo-0.0.1-SNAPSHOT.jar
+	java -jar cachedemo-0.0.1-SNAPSHOT.jar
 	
 	
