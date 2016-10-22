@@ -25,7 +25,8 @@ import org.springframework.context.annotation.Profile;
 @EnableCaching
 public class IgniteCacheConfiguration {
 
-	@Value(value = "${clientMode:false}")
+	/*@Value(value = "${clientMode:false}")*/
+	@Value(value = "#{systemProperties['clientMode'] ?:false}")
 	boolean clientMode;
 
 	@Bean
