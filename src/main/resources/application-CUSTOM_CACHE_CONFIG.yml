@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: cache
+server:
+  port: 8083
+ 
+
+configuration:
+  clientMode: false   
+  caches:
+    - name:              books
+      cacheMode:         PARTITIONED
+      evictionPolicy:   
+        type:            LRU
+        maxSize:         1000000
+      expiryPolicy:      
+        type:            CREATION_TIME
+        duration:        1
+        TimeUnit:        MINUTES
+      offheapMaxMemory:  -1
+      
+    - name:              quotes
+      cacheMode:         REPLICATED
+      evictionPolicy:   
+        type:            RANDOM
+        maxSize:         1000000
+      expiryPolicy:      
+        type:            LAST_ACCESSED_TIME
+        duration:        1
+        TimeUnit:        HOUR
+      offheapMaxMemory:  -1
+      
+    - name:             enrollments
+      cacheMode:        PARTITONED
+      
+    
+    
+  

@@ -1,0 +1,6 @@
+spring:
+  cache:
+    jcache:
+      config: ignite-config.xml
+      
+      
