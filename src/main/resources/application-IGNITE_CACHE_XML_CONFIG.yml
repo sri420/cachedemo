@@ -1,6 +1,6 @@
 spring:
   cache:
     jcache:
-      config: ignite-config.xml
+      config: ${CONFIG_FILE:ignite-config.xml}
       
       
