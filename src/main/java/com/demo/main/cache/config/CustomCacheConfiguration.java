@@ -30,21 +30,6 @@ public class CustomCacheConfiguration {
     CacheConfig cacheConfig;
 	
 	
-	public CacheConfig getCacheConfig() {
-		return cacheConfig;
-	}
-
-	public void setCacheConfig(CacheConfig cacheConfig) {
-				this.cacheConfig = cacheConfig;
-	}
-
-	@Bean
-	SpringCacheManager cacheManager() {
-		SpringCacheManager cacheManager = new SpringCacheManager();
-		cacheManager.setConfiguration(igniteConfiguration());
-		return cacheManager;
-	}
-
 	@Bean
 	CacheConfiguration<String,Object> booksCacheConfiguration(){
 		CacheConfiguration<String, Object> cacheConfiguration = new CacheConfiguration<>("books");
@@ -62,6 +47,25 @@ public class CustomCacheConfiguration {
 		
 		return cacheConfiguration;
 	}
+
+	@Bean
+	SpringCacheManager cacheManager() {
+		SpringCacheManager cacheManager = new SpringCacheManager();
+		cacheManager.setConfiguration(igniteConfiguration());
+		return cacheManager;
+	}
+
+	public CacheConfig getCacheConfig() {
+		return cacheConfig;
+	}
+
+	@Bean
+	IgniteConfiguration igniteConfiguration(){
+		IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
+		igniteConfiguration.setClientMode(cacheConfig.isClientMode());	
+		igniteConfiguration.setCacheConfiguration(booksCacheConfiguration(),quoteCacheConfiguration());
+		return igniteConfiguration;
+	}
 	
 	@Bean
 	CacheConfiguration<String,Object> quoteCacheConfiguration(){
@@ -70,12 +74,8 @@ public class CustomCacheConfiguration {
 		return cacheConfiguration;
 	}
 	
-	@Bean
-	IgniteConfiguration igniteConfiguration(){
-		IgniteConfiguration igniteConfiguration = new IgniteConfiguration();
-		igniteConfiguration.setClientMode(cacheConfig.isClientMode());	
-		igniteConfiguration.setCacheConfiguration(booksCacheConfiguration(),quoteCacheConfiguration());
-		return igniteConfiguration;
+	public void setCacheConfig(CacheConfig cacheConfig) {
+				this.cacheConfig = cacheConfig;
 	}
 
 	

@@ -9,17 +9,17 @@ import com.demo.main.model.Book;
 public class SimpleBookRepository implements BookRepository {
 
 	@Override
-    @Cacheable("quotes")
-    public String getByQuoteRefNo(String isbn) {
-        simulateSlowService();
-        return "Quote:"+isbn;
-    }
-	
-    @Override
     @Cacheable("books")
     public Book getByIsbn(String isbn) {
         simulateSlowService();
         return new Book(isbn, "Some book");
+    }
+	
+    @Override
+    @Cacheable("quotes")
+    public String getByQuoteRefNo(String isbn) {
+        simulateSlowService();
+        return "Quote:"+isbn;
     }
 
     // Don't do this at home

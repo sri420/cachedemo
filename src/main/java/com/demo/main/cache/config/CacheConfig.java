@@ -15,17 +15,17 @@ public class CacheConfig {
 	private List<CacheBean> caches = new ArrayList<CacheBean>();
 	private boolean clientMode;
 	
-	public boolean isClientMode() {
-		return clientMode;
-	}
-	public void setClientMode(boolean clientMode) {
-		this.clientMode = clientMode;
-	}
 	public List<CacheBean> getCaches() {
 		return caches;
 	}
+	public boolean isClientMode() {
+		return clientMode;
+	}
 	public void setCaches(List<CacheBean> caches) {
 		this.caches = caches;
+	}
+	public void setClientMode(boolean clientMode) {
+		this.clientMode = clientMode;
 	}
 	
 }
