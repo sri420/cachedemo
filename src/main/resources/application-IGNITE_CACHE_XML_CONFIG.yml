@@ -1,6 +1,0 @@
-spring:
-  cache:
-    jcache:
-      config: ${CONFIG_FILE:ignite-config.xml}
-      
-      
